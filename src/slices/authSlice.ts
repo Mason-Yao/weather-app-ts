@@ -45,10 +45,10 @@ export const getUser = createAsyncThunk(
 );
 
 interface authState {
-    user: User | null,
-    status: 'idle' | 'loading' | 'succeeded' | 'failed',
-    token?: string | null,
-    error?: AuthApiError | null,
+    user: User | null | undefined,
+    status?: 'idle' | 'loading' | 'succeeded' | 'failed' | undefined,
+    token?: string | null | undefined,
+    error?: AuthApiError | null | undefined,
 }
 
 const initialState: authState = {
@@ -74,7 +74,7 @@ export const authSlice = createSlice(
                     state.error = null;
                 })
                 .addCase(login.fulfilled, (state, action) => {
-                    window.localStorage.setItem('token', action.payload.token);
+                    localStorage.setItem('token', action.payload.token);
                     state.status = 'succeeded';
                 })
                 .addCase(login.rejected, (state, action) => {
@@ -88,7 +88,7 @@ export const authSlice = createSlice(
                     state.error = null;
                 })
                 .addCase(register.fulfilled, (state, action) => {
-                    window.localStorage.setItem('token', action.payload.token);
+                    localStorage.setItem('token', action.payload.token);
                     state.status = 'succeeded';
                 })
                 .addCase(register.rejected, (state, action) => {

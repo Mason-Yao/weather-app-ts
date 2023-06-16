@@ -4,7 +4,7 @@ import { RootState } from "../store";
 export const styleSlice = createSlice({
     name: 'style',
     initialState: {
-        theme: window.localStorage.getItem("theme") || "light",
+        theme: localStorage.getItem("theme") || "light",
     },
     reducers: {
         setTheme: (state, action) => {

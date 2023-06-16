@@ -1,0 +1,9 @@
+module.exports = {
+  testMatch: ["<rootDir>/src/__test__/**/**/*.{spec,test}.{js,jsx,ts,tsx}"],
+  preset: "ts-jest",
+  transform: {
+    "^.+\\.(ts|tsx)?$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  setupFiles: ["jest-localstorage-mock"],
+};

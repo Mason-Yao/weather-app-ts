@@ -1,5 +1,6 @@
 import axios, {AxiosResponse, AxiosError} from "axios";
 import {backendUrl} from "../config";
+import { log } from "console";
 
 axios.defaults.baseURL = backendUrl || "http://localhost:13000";
 
@@ -26,11 +27,11 @@ interface RegisterData {
 
 export interface User {
     username: string,
-    googleId: string | null,
-    firstName: string | null,
-    lastName: string | null,
-    password: string | null,
-    cities: string[] | null
+    googleId?: string | null | undefined,
+    firstName?: string | null | undefined,
+    lastName?: string | null | undefined,
+    password?: string | null | undefined,
+    cities?: string[] | null | undefined
 }
 
 interface ResponseData {
@@ -65,7 +66,8 @@ export const registerAPI = async (registerData: RegisterData):Promise<ResponseDa
 
 export const getUserAPI = async ():Promise<ResponseData> => {
     try {
-        const response: AxiosResponse<ResponseData> = await axios.get('/user', {headers: {'Authorization': 'Bearer ' + token }});
+        const response: AxiosResponse<ResponseData> = await axios.get('/user', { headers: { 'Authorization': 'Bearer ' + token } });
+        console.log(response.data);
         return response.data;
     } catch (err) {
         throw err;

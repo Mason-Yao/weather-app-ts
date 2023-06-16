@@ -77,7 +77,7 @@ export default function Login() {
     };
     
     useEffect(() => {
-    handleGoogleRedirect();
+        handleGoogleRedirect();
     }, []);
 
     type UserLoginData = {
